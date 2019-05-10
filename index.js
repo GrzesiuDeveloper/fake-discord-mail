@@ -35,7 +35,7 @@ app.post('/send', (req, res) => {
     let html = 'error';
     try {html = fs.readFileSync(`mail/${req.body.type}.html`).toString().replace('#NICK#', req.body.nick)} catch(e) {console.error(e)}
     let mail = {
-        from: 'Discord <noreply@discordapp.com>',
+        from: `Discord <noreply@${req.body.from ? req.body.from : 'discordapp.com'}>`,
         sender: `noreply@${config.domain}`,
         to: req.body.email,
         html
